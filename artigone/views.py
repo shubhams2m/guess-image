@@ -26,8 +26,6 @@ def initiateGameView(request):
             current_player_playing_game.save()
             delete_question_answer_after_game(current_player_playing_game)
 
-
-
         active_game = Game.objects.filter(status='on_hold').exclude(player1=request.user)
         current_player_game = Game.objects.filter(Q(status='active')|Q(status='on_hold'), player1=request.user)
         if current_player_game:
@@ -143,8 +141,6 @@ def submitGameView(request):
         game_id = solution_dict['game_id'][0]
         solution_dict = solution_dict['solution'][0]
         game_submitted = Game.objects.get(pk=game_id)
-
-        print("**********************",game_id)
 
         if game_submitted.status == 'playing':
             game_submitted.first_solution = solution_dict

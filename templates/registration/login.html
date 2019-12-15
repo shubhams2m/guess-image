@@ -17,11 +17,13 @@
 <div align="center">
 <div class="card" style="width: 500px;">
 <h2>Login</h2>
+<br>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
+<p>New User? <a href="{% url 'register' %}">Register</a></p>
 </div>
 </div>
 {% endblock %}
