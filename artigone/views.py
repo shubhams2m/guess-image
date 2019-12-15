@@ -24,6 +24,7 @@ def initiateGameView(request):
             current_player_playing_game = current_player_playing_game[0]
             current_player_playing_game.status = 'inactive'
             current_player_playing_game.save()
+            Game.objects.filter(Q(player1=request.user) | Q(player2=request.user)).update(status='inactive')
             delete_question_answer_after_game(current_player_playing_game)
 
         active_game = Game.objects.filter(status='on_hold').exclude(player1=request.user)
